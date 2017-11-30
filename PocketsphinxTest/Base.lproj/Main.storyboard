@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,54 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DpL-qd-RBc">
+                                <rect key="frame" x="163.5" y="261" width="48" height="30"/>
+                                <state key="normal" title="Listen1"/>
+                                <connections>
+                                    <action selector="listenStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fOQ-nJ-UyQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87w-Lo-aCI">
+                                <rect key="frame" x="171.5" y="186" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U6B-Dz-mXY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHA-xh-lmk">
+                                <rect key="frame" x="172" y="324" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7Y-oZ-oV4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="87w-Lo-aCI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="S4c-KF-ox9"/>
+                            <constraint firstItem="kHA-xh-lmk" firstAttribute="top" secondItem="DpL-qd-RBc" secondAttribute="bottom" constant="33" id="Tsy-ej-NHC"/>
+                            <constraint firstItem="DpL-qd-RBc" firstAttribute="top" secondItem="87w-Lo-aCI" secondAttribute="bottom" constant="45" id="mRt-U0-4I9"/>
+                            <constraint firstItem="87w-Lo-aCI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="166" id="mWh-hw-gH2"/>
+                            <constraint firstItem="DpL-qd-RBc" firstAttribute="centerX" secondItem="87w-Lo-aCI" secondAttribute="centerX" id="pLk-AY-XBN"/>
+                            <constraint firstItem="kHA-xh-lmk" firstAttribute="centerX" secondItem="DpL-qd-RBc" secondAttribute="centerX" id="wmn-w5-nG5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qU4-lc-twC">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="nao-5r-cQm"/>
+                </view>
             </objects>
+            <point key="canvasLocation" x="52" y="80.50974512743629"/>
         </scene>
     </scenes>
 </document>
