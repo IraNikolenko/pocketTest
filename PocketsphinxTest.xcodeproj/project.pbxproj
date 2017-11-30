@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		841B38791FC71B8500061AB6 /* VKAQRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B38721FC71B8300061AB6 /* VKAQRecorder.m */; };
-		841B387B1FC71B8500061AB6 /* VKAQRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 841B38741FC71B8400061AB6 /* VKAQRecorder.h */; };
-		841B387C1FC71B8500061AB6 /* VKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841B38751FC71B8400061AB6 /* VKController.m */; };
-		841B387D1FC71B8500061AB6 /* VKController.h in Headers */ = {isa = PBXBuildFile; fileRef = 841B38761FC71B8400061AB6 /* VKController.h */; };
-		841B387E1FC71B8500061AB6 /* VKDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 841B38771FC71B8400061AB6 /* VKDecoder.h */; };
 		8440F1C81FBDC29E0034402C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F1C71FBDC29E0034402C /* AppDelegate.m */; };
 		8440F1CB1FBDC29E0034402C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F1CA1FBDC29E0034402C /* ViewController.m */; };
 		8440F1CE1FBDC29E0034402C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440F1CC1FBDC29E0034402C /* Main.storyboard */; };
@@ -71,16 +66,9 @@
 		8440F37A1FC2F2080034402C /* libsphinxbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3741FC2F2070034402C /* libsphinxbase.a */; };
 		8440F37C1FC2F2080034402C /* libsphinxad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3761FC2F2080034402C /* libsphinxad.a */; };
 		8440F3851FC2F25E0034402C /* libpocketsphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3811FC2F25D0034402C /* libpocketsphinx.a */; };
-		84DCF1C21FC7236E003DD174 /* VocalKitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCF1BE1FC7236D003DD174 /* VocalKitTestViewController.m */; };
-		84DCF1C31FC7236E003DD174 /* VocalKitTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84DCF1BF1FC7236E003DD174 /* VocalKitTestViewController.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		841B38721FC71B8300061AB6 /* VKAQRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKAQRecorder.m; sourceTree = "<group>"; };
-		841B38741FC71B8400061AB6 /* VKAQRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKAQRecorder.h; sourceTree = "<group>"; };
-		841B38751FC71B8400061AB6 /* VKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKController.m; sourceTree = "<group>"; };
-		841B38761FC71B8400061AB6 /* VKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKController.h; sourceTree = "<group>"; };
-		841B38771FC71B8400061AB6 /* VKDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKDecoder.h; sourceTree = "<group>"; };
 		8440F1C31FBDC29E0034402C /* PocketsphinxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketsphinxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8440F1C61FBDC29E0034402C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8440F1C71FBDC29E0034402C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -145,8 +133,6 @@
 		8440F3741FC2F2070034402C /* libsphinxbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsphinxbase.a; sourceTree = "<group>"; };
 		8440F3761FC2F2080034402C /* libsphinxad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsphinxad.a; sourceTree = "<group>"; };
 		8440F3811FC2F25D0034402C /* libpocketsphinx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpocketsphinx.a; sourceTree = "<group>"; };
-		84DCF1BE1FC7236D003DD174 /* VocalKitTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VocalKitTestViewController.m; path = "../../../../Downloads/VocalKit-a25e5f36a661ac1b5555e8b6ea7c2c30dc682862/VocalKitTest/Classes/VocalKitTestViewController.m"; sourceTree = "<group>"; };
-		84DCF1BF1FC7236E003DD174 /* VocalKitTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VocalKitTestViewController.h; path = "../../../../Downloads/VocalKit-a25e5f36a661ac1b5555e8b6ea7c2c30dc682862/VocalKitTest/Classes/VocalKitTestViewController.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,15 +181,8 @@
 				8440F1D11FBDC29E0034402C /* LaunchScreen.storyboard */,
 				8440F1D41FBDC29E0034402C /* Info.plist */,
 				8440F1D51FBDC29E0034402C /* main.m */,
-				841B38741FC71B8400061AB6 /* VKAQRecorder.h */,
-				841B38721FC71B8300061AB6 /* VKAQRecorder.m */,
-				841B38761FC71B8400061AB6 /* VKController.h */,
-				841B38751FC71B8400061AB6 /* VKController.m */,
-				841B38771FC71B8400061AB6 /* VKDecoder.h */,
 				8440F20E1FBDCAC70034402C /* PocketsphinxDecoder.h */,
 				8440F20F1FBDCAC70034402C /* PocketsphinxDecoder.m */,
-				84DCF1BF1FC7236E003DD174 /* VocalKitTestViewController.h */,
-				84DCF1BE1FC7236D003DD174 /* VocalKitTestViewController.m */,
 			);
 			path = PocketsphinxTest;
 			sourceTree = "<group>";
@@ -306,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8440F3131FBDE98F0034402C /* yin.h in Headers */,
-				841B387D1FC71B8500061AB6 /* VKController.h in Headers */,
 				8440F3171FBDE98F0034402C /* err.h in Headers */,
 				8440F34A1FBDEAAF0034402C /* cmdln_macro.h in Headers */,
 				8440F31D1FBDE98F0034402C /* byteorder.h in Headers */,
@@ -314,7 +292,6 @@
 				8440F3481FBDEAAF0034402C /* pocketsphinx.h in Headers */,
 				8440F34B1FBDEAAF0034402C /* pocketsphinx_export.h in Headers */,
 				8440F30E1FBDE98F0034402C /* hash_table.h in Headers */,
-				841B387B1FC71B8500061AB6 /* VKAQRecorder.h in Headers */,
 				8440F3081FBDE98F0034402C /* f2c.h in Headers */,
 				8440F2FC1FBDE98F0034402C /* mmio.h in Headers */,
 				8440F2FD1FBDE98F0034402C /* case.h in Headers */,
@@ -332,8 +309,6 @@
 				8440F3071FBDE98F0034402C /* ad.h in Headers */,
 				8440F2FE1FBDE98F0034402C /* logmath.h in Headers */,
 				8440F3181FBDE98F0034402C /* pio.h in Headers */,
-				84DCF1C31FC7236E003DD174 /* VocalKitTestViewController.h in Headers */,
-				841B387E1FC71B8500061AB6 /* VKDecoder.h in Headers */,
 				8440F3091FBDE98F0034402C /* sphinxbase_export.h in Headers */,
 				8440F30C1FBDE98F0034402C /* strfuncs.h in Headers */,
 				8440F3121FBDE98F0034402C /* matrix.h in Headers */,
@@ -432,12 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84DCF1C21FC7236E003DD174 /* VocalKitTestViewController.m in Sources */,
 				8440F1CB1FBDC29E0034402C /* ViewController.m in Sources */,
 				8440F1D61FBDC29E0034402C /* main.m in Sources */,
-				841B387C1FC71B8500061AB6 /* VKController.m in Sources */,
 				8440F2101FBDCAC70034402C /* PocketsphinxDecoder.m in Sources */,
-				841B38791FC71B8500061AB6 /* VKAQRecorder.m in Sources */,
 				8440F1C81FBDC29E0034402C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

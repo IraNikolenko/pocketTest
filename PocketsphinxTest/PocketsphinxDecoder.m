@@ -99,15 +99,61 @@ private File wav;
 -(void)getSeg:(ps_seg_t*) segIter{
     int out_sf;
     int out_ef;
+    NSString *commands = nil;
+    int prevEnd = 0;
     if(segIter && segIter!=nil){
     ps_seg_frames((segIter), &out_sf, &out_ef);
     char const * word = ps_seg_word(segIter);
+        NSString *phonem = [NSString stringWithUTF8String:word];
     NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
+        if([phonem isEqualToString:@"AA"] || [phonem isEqualToString:@"AH"] || [phonem isEqualToString:@"EH"] || [phonem isEqualToString:@"ER"] ||[phonem isEqualToString:@"EY"] || [phonem isEqualToString:@"AW"] || [phonem isEqualToString:@"AE"] || [phonem isEqualToString:@"AY"]) {
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"A"]];
+            prevEnd = out_ef;
+        } else if ([phonem isEqualToString:@"AO"] || [phonem isEqualToString:@"OW"] || [phonem isEqualToString:@"OY"]) {
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"O"]];
+            prevEnd = out_ef;
+        } else if ([phonem isEqualToString:@"UH"] || [phonem isEqualToString:@"UW"]) {
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"U"]];
+            prevEnd = out_ef;
+        } else if ([phonem isEqualToString:@"IH"] || [phonem isEqualToString:@"IY"]) {
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"E"]];
+            prevEnd = out_ef;
+        } else if ([phonem isEqualToString:@"P"] || [phonem isEqualToString:@"B"] || [phonem isEqualToString:@"M"] || [phonem isEqualToString:@"F"]) {
+            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_sf + (out_ef-out_sf)/2)];
+        } else if ([phonem isEqualToString:@"SIL"]) {
+            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_sf)];
+            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_ef)];
+            prevEnd = out_ef;
+        }
+        
     [self getSeg:ps_seg_next(segIter)];
     } else {
+        commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_ef + 5)];
         return;
     }
 }
+
+-(NSString*) newCommandWithPrevEnd:(int) prevEnd andStartFrame:(int) start andEndTime:(int) end andLetter:(NSString*) letter{
+    NSString *command = @"";
+    int pause = 10;
+    double koef = 1000/frameRate;
+    
+    if((start-prevEnd)*koef>600) {
+//        command += "close " + (int) (prevEnd * koef + pause) + " ";
+//        command += "close " + (int) (start * koef - pause) + " ";
+    }
+    command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (start*koef), @"0.6"];
+    if((start-end)*koef<100)
+        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, ((start+(end-start)/2)*koef), @"1"];
+    else {
+        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (start * koef + 20), @"1"];
+        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (end * koef - 20), @"1"];
+    }
+    command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (end * koef - 20), @"0.8"];
+    
+    return command;
+}
+
 
 - (void) printDebug {
     int32 score;
@@ -123,93 +169,5 @@ private File wav;
         ps_free(_ps);
     }
 }
-
-//- (void) getSegmentList {
-////    Assets assets = null;
-//    //    File assetsDir = null;
-//
-//    PocketsphinxDecoder *decoder = [[PocketsphinxDecoder alloc] initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"pocketsphinx" ofType:@"conf" ]];
-//    [decoder setConfigString:[[NSBundle mainBundle] pathForResource:@"cmu07a"
-//                                                             ofType:@"dic"
-//                                                        inDirectory:@"lm/en_US"]
-//                      forKey:@"-dict"];
-//
-//    [decoder setConfigString:[[NSBundle mainBundle] pathForResource:@"wsj0vp.5000"
-//                                                             ofType:@"DMP"
-//                                                        inDirectory:@"lm/en_US"]
-//                      forKey:@"-lm"];
-//
-//    [decoder setConfigString:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"hmm/hub4wsj_sc_8k"]
-//                      forKey:@"-hmm"];
-//
-//    [decoder setAllPhoneFileWithName:@"phone" andPath:[[NSBundle mainBundle] pathForResource:@"en-phone" ofType:@"dmp" inDirectory:@"lm/en_US"]];
-//
-//    [decoder setSearchWithName:@"phone"];
-//
-//    NSInputStream *stream = nil;
-//    NSMutableData *audioData = nil;
-//
-////                    File sdCard = Environment.getExternalStorageDirectory();
-////                    File dir = new File (sdCard.getAbsolutePath() + "/Halogram");
-////                    File wav = new File(dir,"testAlla.wav");
-////    NSLog(@"File path: ", wav.getAbsolutePath());
-//
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"brian" ofType:@"wav"];
-//
-//    @try {
-//        audioData = [NSMutableData dataWithContentsOfFile:filePath];
-//        stream = [[NSInputStream alloc] initWithData:audioData];
-////        stream = [[NSInputStream alloc] initWithFileAtPath:filePath];
-//    } @catch (NSError *error) {
-//        NSLog(@"Error: %@ from: %@",error.description, NSStringFromSelector(_cmd));
-//    }
-//
-//    [decoder startDecode];
-//
-//    long l = 4096;
-//    char bytes[sizeof(long)];
-//    memcpy(bytes,&l,sizeof(l));
-//    uint8_t buf[4096];
-//
-//    @try {
-//        NSInteger nbytes;
-////        uint8_t *data = (uint8_t *)[audioData bytes];
-////        while ((nbytes = [stream read:buf maxLength:l])>=0) {
-////
-////            NSUInteger audioLength = [audioData length];
-////
-////            Byte *byteData = (Byte*)malloc(audioLength);
-////            memcpy(byteData, [audioData bytes], audioLength);
-////
-////            short *shortData = (short*)malloc(audioLength/2);
-////
-////            for (int i=0; i<audioLength; i++){
-////                shortData[i] = byteData[i];
-////            };
-////
-////
-////
-////            [decoder processRawWithData:shortData andSize:nbytes/2 andSearch:0 andFullUtt:0];
-////        }
-////        int16 *data = (int16 *)[audioData bytes];
-//
-//        [decoder processRawWithData:[audioData bytes] andSize:[audioData length]/2 andSearch:0 andFullUtt:0];
-//        NSLog(@"%ld", (long)nbytes);
-//    } @catch (NSException *exception) {
-//        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
-//    }
-//    [decoder stopDecode];
-//
-//    @try {
-//        [stream close];
-//        NSString * res = [self getSegments];
-//        NSLog(@"Recognititon result: %@ ", res);
-////        [self printDebug];
-//    } @catch (NSException *exception) {
-//        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
-//    }
-//
-////    return decoder.seg();
-//}
 
 @end

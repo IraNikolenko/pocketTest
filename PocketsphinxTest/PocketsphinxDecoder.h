@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #include "pocketsphinx.h"
-#include "VKDecoder.h"
 //#include "ps_search.h"
 
-@interface PocketsphinxDecoder : NSObject <VKDecoder> {
+@interface PocketsphinxDecoder : NSObject {
     ps_decoder_t *_ps;
     
     cmd_ln_t *_config;
@@ -30,6 +29,7 @@
 //- (void) getSegmentList;
 - (void) printDebug;
 
+@property NSString* resultString;
 @property (nonatomic, copy) NSString* configFile;
 - (ps_decoder_t*) ps;
 - (cmd_ln_t*) config;

@@ -24,8 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self getSegmentList];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
@@ -33,6 +31,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)listenStart:(id)sender {
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -42,20 +41,6 @@
     NSLog(@"Recording File Path dir: %@", recordedAudioURL);
     
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-
-    
-    // initiate recorder
-//    NSError *error;
-//    userAudioRecorder = [[AVAudioRecorder alloc] initWithURL:recordedAudioURL settings:recordSetting error:&error];
-//    userAudioRecorder.delegate = self;
-//    if (error)
-//    {
-//        NSLog(@"*********************");
-//        NSLog(@"Error in initializing: %@", [error localizedDescription]);
-//        NSLog(@"*********************");
-//    } else {
-//        [userAudioRecorder record];
-//    }
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = nil;
@@ -112,7 +97,6 @@
         return;
     }
     
-    // start recording
     [userAudioRecorder record];
 
 }
@@ -124,8 +108,6 @@
 }
 
 - (void) getSegmentList:(NSURL *)url{
-    //    Assets assets = null;
-    //    File assetsDir = null;
     
     PocketsphinxDecoder *decoder = [[PocketsphinxDecoder alloc] initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"pocketsphinx" ofType:@"conf" ]];
     [decoder setConfigString:[[NSBundle mainBundle] pathForResource:@"cmu07a"
@@ -151,17 +133,11 @@
     NSInputStream *stream = nil;
     NSMutableData *audioData = nil;
     
-    //                    File sdCard = Environment.getExternalStorageDirectory();
-    //                    File dir = new File (sdCard.getAbsolutePath() + "/Halogram");
-    //                    File wav = new File(dir,"testAlla.wav");
-    //    NSLog(@"File path: ", wav.getAbsolutePath());
-    
     NSString *filePath = [recordedAudioURL path];
     
     @try {
         audioData = [NSMutableData dataWithContentsOfFile:filePath];
         stream = [[NSInputStream alloc] initWithData:audioData];
-        //        stream = [[NSInputStream alloc] initWithFileAtPath:filePath];
     } @catch (NSError *error) {
         NSLog(@"Error: %@ from: %@",error.description, NSStringFromSelector(_cmd));
     }
@@ -175,26 +151,6 @@
     
     @try {
         NSInteger nbytes;
-        //        uint8_t *data = (uint8_t *)[audioData bytes];
-        //        while ((nbytes = [stream read:buf maxLength:l])>=0) {
-        //
-        //            NSUInteger audioLength = [audioData length];
-        //
-        //            Byte *byteData = (Byte*)malloc(audioLength);
-        //            memcpy(byteData, [audioData bytes], audioLength);
-        //
-        //            short *shortData = (short*)malloc(audioLength/2);
-        //
-        //            for (int i=0; i<audioLength; i++){
-        //                shortData[i] = byteData[i];
-        //            };
-        //
-        //
-        //
-        //            [decoder processRawWithData:shortData andSize:nbytes/2 andSearch:0 andFullUtt:0];
-        //        }
-        //        int16 *data = (int16 *)[audioData bytes];
-        
         
         int i = [decoder processRawWithData:[audioData bytes] andSize:[audioData length]/2 andSearch:0 andFullUtt:0];
         NSLog(@"shjdgfksjdhf %d", i);
@@ -209,14 +165,9 @@
         [stream close];
         [decoder printDebug];
         [decoder getSegments];
-//        NSString * res = [decoder getSegments];
-//        NSLog(@"Recognititon result: %@ ", res);
-        //        [self printDebug];
     } @catch (NSException *exception) {
         NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
     }
-    
-    //    return decoder.seg();
 }
 - (IBAction)playAudio:(id)sender {
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:recordedAudioURL error:nil];
