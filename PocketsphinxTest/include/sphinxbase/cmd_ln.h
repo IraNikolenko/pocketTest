@@ -173,7 +173,7 @@ typedef struct arg_s {
 #define ARG_STRINGIFY1(s) #s
 
 /**
- * @struct cmd_ln_t
+ * @typedef struct cmd_ln_t
  * Opaque structure used to hold the results of command-line parsing.
  */
 typedef struct cmd_ln_s cmd_ln_t;
@@ -463,7 +463,7 @@ void cmd_ln_appl_enter(int argc,   /**< In: Number of actual arguments */
 		       char *argv[], /**< In: Number of actual arguments */
 		       char const* default_argfn, /**< In: default argument file name*/
 		       const arg_t *defn /**< Command-line argument definition */
-	);
+) __attribute__((deprecated));
 
 
 /**
@@ -482,7 +482,7 @@ void cmd_ln_appl_exit(void) __attribute__((deprecated));
  * @return global cmd_ln_t object.
  */
 SPHINXBASE_EXPORT
-cmd_ln_t *cmd_ln_get(void);
+cmd_ln_t *cmd_ln_get(void) __attribute__((deprecated));
 
 /**
  * Test the existence of a command-line argument in the global set of
@@ -599,7 +599,7 @@ cmd_ln_t *cmd_ln_get(void);
  * @deprecated Use the re-entrant API instead.
  */
 SPHINXBASE_EXPORT
-void cmd_ln_free (void);
+void cmd_ln_free (void) __attribute__((deprecated));
 
 
 #ifdef __cplusplus

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioQueue.h>
+#import <AudioToolbox/AudioFile.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <AVAudioRecorderDelegate>
 
 @end
 

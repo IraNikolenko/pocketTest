@@ -26,7 +26,7 @@
 - (void) setAllPhoneFileWithName:(NSString *)name andPath:(NSString *)path;
 - (void) setSearchWithName:(NSString *)name;
 - (int) processRawWithData:(const int16 *)data andSize:(size_t)size andSearch:(int)search andFullUtt:(int)fullUtt ;
-//- (void) getSegmentList;
+- (void) getSegmentList:(NSString *)url;
 - (void) printDebug;
 
 @property NSString* resultString;

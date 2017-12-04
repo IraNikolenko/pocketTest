@@ -8,14 +8,12 @@
 
 #import "ViewController.h"
 #include "PocketsphinxDecoder.h"
-#import <AudioToolbox/AudioQueue.h>
-#import <AudioToolbox/AudioFile.h>
-#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController (){
     NSURL *recordedAudioURL;
     AVAudioRecorder *userAudioRecorder;
     AVAudioPlayer *_audioPlayer;
+    PocketsphinxDecoder *decoder;
 }
 
 @end
@@ -24,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    decoder = [[PocketsphinxDecoder alloc] init];
 }
 
 
@@ -70,13 +69,14 @@
     userAudioRecorder = [[ AVAudioRecorder alloc] initWithURL:recordedAudioURL settings:recordSetting error:&err];
     if(!userAudioRecorder){
         NSLog(@"recorder: %@ %ld %@", [err domain], [err code], [[err userInfo] description]);
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle: @"Warning"
-                                   message: [err localizedDescription]
-                                  delegate: nil
-                         cancelButtonTitle:@"OK"
-                         otherButtonTitles:nil];
-        [alert show];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:[err localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:ok];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         return;
     }
     
@@ -87,13 +87,13 @@
     
     BOOL audioHWAvailable = audioSession.inputIsAvailable;
     if (! audioHWAvailable) {
-        UIAlertView *cantRecordAlert =
-        [[UIAlertView alloc] initWithTitle: @"Warning"
-                                   message: @"Audio input hardware not available"
-                                  delegate: nil
-                         cancelButtonTitle:@"OK"
-                         otherButtonTitles:nil];
-        [cantRecordAlert show];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Audio input hardware not available" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:ok];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
         return;
     }
     
@@ -103,72 +103,11 @@
 
 - (IBAction)stop:(id)sender {
     [userAudioRecorder stop];
-    [self getSegmentList:[userAudioRecorder url]];
+    [decoder getSegmentList:[recordedAudioURL path]];
     
 }
 
-- (void) getSegmentList:(NSURL *)url{
-    
-    PocketsphinxDecoder *decoder = [[PocketsphinxDecoder alloc] initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"pocketsphinx" ofType:@"conf" ]];
-    [decoder setConfigString:[[NSBundle mainBundle] pathForResource:@"cmu07a"
-                                                             ofType:@"dic"
-                                                        inDirectory:@"lm/en_US"]
-                      forKey:@"-dict"];
-    
-    [decoder setConfigString:[[NSBundle mainBundle] pathForResource:@"wsj0vp.5000"
-                                                             ofType:@"DMP"
-                                                        inDirectory:@"lm/en_US"]
-                      forKey:@"-lm"];
-    
-    [decoder setConfigString:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"hmm/hub4wsj_sc_8k"]
-                      forKey:@"-hmm"];
-    
-    [decoder setAllPhoneFileWithName:@"phone" andPath:[[NSBundle mainBundle] pathForResource:@"en-phone" ofType:@"dmp" inDirectory:@"lm/en_US"]];
-    
-    [decoder setSearchWithName:@"phone"];
-    
-    FILE * pFile;
-    pFile = fopen ("brian.wav" , "r");
-    
-    NSInputStream *stream = nil;
-    NSMutableData *audioData = nil;
-    
-    NSString *filePath = [recordedAudioURL path];
-    
-    @try {
-        audioData = [NSMutableData dataWithContentsOfFile:filePath];
-        stream = [[NSInputStream alloc] initWithData:audioData];
-    } @catch (NSError *error) {
-        NSLog(@"Error: %@ from: %@",error.description, NSStringFromSelector(_cmd));
-    }
-    
-    [decoder startDecode];
-    
-    long l = 4096;
-    char bytes[sizeof(long)];
-    memcpy(bytes,&l,sizeof(l));
-    uint8_t buf[4096];
-    
-    @try {
-        NSInteger nbytes;
-        
-        int i = [decoder processRawWithData:[audioData bytes] andSize:[audioData length]/2 andSearch:0 andFullUtt:0];
-        NSLog(@"shjdgfksjdhf %d", i);
-        
-        
-    } @catch (NSException *exception) {
-        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
-    }
-    [decoder stopDecode];
-    
-    @try {
-        [stream close];
-        [decoder printDebug];
-        [decoder getSegments];
-    } @catch (NSException *exception) {
-        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
-    }
-}
+
 - (IBAction)playAudio:(id)sender {
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:recordedAudioURL error:nil];
     [_audioPlayer play];

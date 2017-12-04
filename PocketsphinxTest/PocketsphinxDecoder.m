@@ -21,6 +21,7 @@ static const arg_t vk_args_def[] = {
 
 int frameRate = 100;
 int rv;
+NSString *commands = @"";
 
 @implementation PocketsphinxDecoder
 
@@ -28,6 +29,10 @@ int rv;
 private File wav;
 
 */
+
+- (id) init {
+    return [self initWithConfigFile:[[NSBundle mainBundle] pathForResource:@"pocketsphinx" ofType:@"conf" ]];
+}
 
 - (id) initWithConfigFile:(NSString*)config {
     self = [super init];
@@ -96,62 +101,66 @@ private File wav;
     return @"jkfdhf";
 }
 
--(void)getSeg:(ps_seg_t*) segIter{
+-(NSString *)getSeg:(ps_seg_t*) segIter{
     int out_sf;
     int out_ef;
-    NSString *commands = nil;
     int prevEnd = 0;
     if(segIter && segIter!=nil){
     ps_seg_frames((segIter), &out_sf, &out_ef);
     char const * word = ps_seg_word(segIter);
         NSString *phonem = [NSString stringWithUTF8String:word];
-    NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
+    
         if([phonem isEqualToString:@"AA"] || [phonem isEqualToString:@"AH"] || [phonem isEqualToString:@"EH"] || [phonem isEqualToString:@"ER"] ||[phonem isEqualToString:@"EY"] || [phonem isEqualToString:@"AW"] || [phonem isEqualToString:@"AE"] || [phonem isEqualToString:@"AY"]) {
-            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"A"]];
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndFrame:out_ef andLetter:@"A"]];
+            NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
             prevEnd = out_ef;
         } else if ([phonem isEqualToString:@"AO"] || [phonem isEqualToString:@"OW"] || [phonem isEqualToString:@"OY"]) {
-            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"O"]];
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndFrame:out_ef andLetter:@"O"]];
+            NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
             prevEnd = out_ef;
         } else if ([phonem isEqualToString:@"UH"] || [phonem isEqualToString:@"UW"]) {
-            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"U"]];
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndFrame:out_ef andLetter:@"U"]];
+            NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
             prevEnd = out_ef;
         } else if ([phonem isEqualToString:@"IH"] || [phonem isEqualToString:@"IY"]) {
-            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndTime:out_ef andLetter:@"E"]];
+            commands = [NSString stringWithFormat:@"%@ %@", commands, [self newCommandWithPrevEnd:prevEnd andStartFrame:out_sf andEndFrame:out_ef andLetter:@"I"]];
+            NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
             prevEnd = out_ef;
         } else if ([phonem isEqualToString:@"P"] || [phonem isEqualToString:@"B"] || [phonem isEqualToString:@"M"] || [phonem isEqualToString:@"F"]) {
-            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_sf + (out_ef-out_sf)/2)];
+            commands = [NSString stringWithFormat:@"%@ %@ %d ", commands, @"empty", (out_sf + (out_ef-out_sf)/2)];
         } else if ([phonem isEqualToString:@"SIL"]) {
-            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_sf)];
-            commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_ef)];
+            int interval = (out_ef - out_sf) * 10;
+            commands = [NSString stringWithFormat:@"%@ %@ %d", commands, @"empty", interval];
+            NSLog(@"word: %s  start: %d    end: %d", word, out_sf, out_ef);
             prevEnd = out_ef;
         }
-        
     [self getSeg:ps_seg_next(segIter)];
     } else {
-        commands = [NSString stringWithFormat:@"%@ %@%d ", commands, @"close ", (out_ef + 5)];
-        return;
+        commands = [NSString stringWithFormat:@"%@ %@ %d ", commands, @"empty ", 5];
+        return commands;
     }
+    return commands;
 }
 
--(NSString*) newCommandWithPrevEnd:(int) prevEnd andStartFrame:(int) start andEndTime:(int) end andLetter:(NSString*) letter{
-    NSString *command = @"";
-    int pause = 10;
-    double koef = 1000/frameRate;
+-(NSString*) newCommandWithPrevEnd:(int) prevEnd andStartFrame:(int) start andEndFrame:(int) end andLetter:(NSString*) letter{
+    NSString *mouthCommand = @"mouth";
+    NSString *emptyCommand = @"empty";
+    NSString *resultString = nil;
+    double koef = 10;
     
-    if((start-prevEnd)*koef>600) {
-//        command += "close " + (int) (prevEnd * koef + pause) + " ";
-//        command += "close " + (int) (start * koef - pause) + " ";
+    int interval = (end - start) * koef;
+    if(interval <= 60) {
+        resultString = [NSString stringWithFormat:@"%@ %@", emptyCommand, @"0"];
+    } else if (interval > 70 && interval < 150) {
+        int partTime = interval/2;
+        resultString = [NSString stringWithFormat:@"%@%@ %@ %d %@ %@ %@%@ %@ %d", mouthCommand, letter, @"1", partTime, emptyCommand, @"0", mouthCommand, letter, @"-1", partTime];
+    } else {
+        int residual = interval - 150;
+        int partTime = 75;
+        resultString = [NSString stringWithFormat:@"%@%@ %@ %d %@ %d %@%@ %@ %d", mouthCommand, letter, @"1", partTime, emptyCommand, residual, mouthCommand, letter, @"-1", partTime];
     }
-    command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (start*koef), @"0.6"];
-    if((start-end)*koef<100)
-        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, ((start+(end-start)/2)*koef), @"1"];
-    else {
-        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (start * koef + 20), @"1"];
-        command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (end * koef - 20), @"1"];
-    }
-    command = [NSString stringWithFormat:@"%@ %@ %f %@", command, letter, (end * koef - 20), @"0.8"];
     
-    return command;
+    return resultString;
 }
 
 
@@ -167,6 +176,64 @@ private File wav;
     // Are we leaking _config?
     if (_ps) {
         ps_free(_ps);
+    }
+}
+
+- (void) getSegmentList:(NSString *)url{
+    
+    [self setConfigString:[[NSBundle mainBundle] pathForResource:@"cmu07a"
+                                                             ofType:@"dic"
+                                                        inDirectory:@"lm/en_US"]
+                      forKey:@"-dict"];
+    
+    [self setConfigString:[[NSBundle mainBundle] pathForResource:@"wsj0vp.5000"
+                                                             ofType:@"DMP"
+                                                        inDirectory:@"lm/en_US"]
+                      forKey:@"-lm"];
+    
+    [self setConfigString:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"hmm/hub4wsj_sc_8k"]
+                      forKey:@"-hmm"];
+    
+    [self setAllPhoneFileWithName:@"phone" andPath:[[NSBundle mainBundle] pathForResource:@"en-phone" ofType:@"dmp" inDirectory:@"lm/en_US"]];
+    
+    [self setSearchWithName:@"phone"];
+    
+    FILE * pFile;
+    pFile = fopen ("brian.wav" , "r");
+    
+    NSInputStream *stream = nil;
+    NSMutableData *audioData = nil;
+    
+    @try {
+        audioData = [NSMutableData dataWithContentsOfFile:url];
+        stream = [[NSInputStream alloc] initWithData:audioData];
+    } @catch (NSError *error) {
+        NSLog(@"Error: %@ from: %@",error.description, NSStringFromSelector(_cmd));
+    }
+    
+    [self startDecode];
+    
+    long l = 4096;
+    char bytes[sizeof(long)];
+    memcpy(bytes,&l,sizeof(l));
+    
+    @try {
+        
+        int i = [self processRawWithData:[audioData bytes] andSize:[audioData length]/2 andSearch:0 andFullUtt:0];
+        NSLog(@"shjdgfksjdhf %d", i);
+        
+        
+    } @catch (NSException *exception) {
+        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
+    }
+    [self stopDecode];
+    
+    @try {
+        [stream close];
+        [self printDebug];
+        _resultString = [self getSegments];
+    } @catch (NSException *exception) {
+        NSLog(@"Error: %@ from: %@", exception.description, NSStringFromSelector(_cmd));
     }
 }
 
