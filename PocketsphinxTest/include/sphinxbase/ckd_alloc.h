@@ -90,8 +90,8 @@
 #include <setjmp.h>
 
 /* Win32/WinCE DLL gunk */
-#include <sphinxbase_export.h>
-#include <prim_type.h>
+#include "sphinxbase_export.h"
+#include "prim_type.h"
 
 /** \file ckd_alloc.h
  *\brief Sphinx's memory allocation/deallocation routines.

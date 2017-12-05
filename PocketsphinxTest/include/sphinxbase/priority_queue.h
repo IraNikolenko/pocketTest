@@ -2,7 +2,7 @@
 #define __PRIORITY_QUEUE_H__
 
 #include <stdlib.h>
-#include <sphinxbase_export.h>
+#include "sphinxbase_export.h"
 
 #ifdef __cplusplus
 extern "C" {

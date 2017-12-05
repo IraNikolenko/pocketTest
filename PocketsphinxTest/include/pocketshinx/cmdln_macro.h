@@ -40,9 +40,9 @@
 #ifndef __PS_CMDLN_MACRO_H__
 #define __PS_CMDLN_MACRO_H__
 
-#include <cmd_ln.h>
-#include <feat.h>
-#include <fe.h>
+#include "cmd_ln.h"
+#include "feat.h"
+#include "fe.h"
 
 /** Minimal set of command-line options for PocketSphinx. */
 #define POCKETSPHINX_OPTIONS \

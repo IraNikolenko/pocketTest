@@ -68,8 +68,8 @@
 #ifndef __PS_SEARCH_H__
 #define __PS_SEARCH_H__
 
-#include <fsg_model.h>
-#include <ngram_model.h>
+#include "fsg_model.h"
+#include "ngram_model.h"
 
 #ifdef __cplusplus
 extern "C" {

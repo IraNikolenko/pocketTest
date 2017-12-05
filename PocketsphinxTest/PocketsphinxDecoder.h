@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "pocketsphinx.h"
+#include "include/pocketshinx/pocketsphinx.h"
+//#include "pocketsphinx.h"
 //#include "ps_search.h"
 
 @interface PocketsphinxDecoder : NSObject {

@@ -43,16 +43,16 @@
 #include <stdio.h>
 
 /* SphinxBase headers we need. */
-#include <cmd_ln.h>
-#include <logmath.h>
-#include <fe.h>
-#include <feat.h>
+#include "cmd_ln.h"
+#include "logmath.h"
+#include "fe.h"
+#include "feat.h"
 
 /* PocketSphinx headers (not many of them!) */
-#include <pocketsphinx_export.h>
-#include <cmdln_macro.h>
-#include <ps_lattice.h>
-#include <ps_mllr.h>
+#include "pocketsphinx_export.h"
+#include "cmdln_macro.h"
+#include "ps_lattice.h"
+#include "ps_mllr.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,7 +66,7 @@ extern "C" {
  */
 typedef struct ps_decoder_s ps_decoder_t;
 
-#include <ps_search.h>
+#include "ps_search.h"
 
 /**
  * PocketSphinx N-best hypothesis iterator object.

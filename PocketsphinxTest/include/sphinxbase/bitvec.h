@@ -41,10 +41,10 @@
 #include <string.h>
 
 /* Win32/WinCE DLL gunk */
-#include <sphinxbase_export.h>
+#include "sphinxbase_export.h"
 
-#include <prim_type.h>
-#include <ckd_alloc.h>
+#include "prim_type.h"
+#include "ckd_alloc.h"
 
 /** 
  * @file bitvec.h

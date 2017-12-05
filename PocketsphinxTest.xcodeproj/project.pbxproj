@@ -66,7 +66,116 @@
 		8440F37A1FC2F2080034402C /* libsphinxbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3741FC2F2070034402C /* libsphinxbase.a */; };
 		8440F37C1FC2F2080034402C /* libsphinxad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3761FC2F2080034402C /* libsphinxad.a */; };
 		8440F3851FC2F25E0034402C /* libpocketsphinx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F3811FC2F25D0034402C /* libpocketsphinx.a */; };
+		84FC909B1FD5AE5B00719B19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F1C71FBDC29E0034402C /* AppDelegate.m */; };
+		84FC909C1FD5AE5B00719B19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F1CA1FBDC29E0034402C /* ViewController.m */; };
+		84FC909D1FD5AE5B00719B19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F1D51FBDC29E0034402C /* main.m */; };
+		84FC909E1FD5AE5B00719B19 /* PocketsphinxDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F20F1FBDCAC70034402C /* PocketsphinxDecoder.m */; };
+		84FC909F1FD5AE7E00719B19 /* AppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F1C61FBDC29E0034402C /* AppDelegate.h */; };
+		84FC90A01FD5AE7E00719B19 /* ViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F1C91FBDC29E0034402C /* ViewController.h */; };
+		84FC90A11FD5AE7E00719B19 /* PocketsphinxDecoder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F20E1FBDCAC70034402C /* PocketsphinxDecoder.h */; };
+		84FC90A21FD5AE7E00719B19 /* ad.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E21FBDE98A0034402C /* ad.h */; };
+		84FC90A31FD5AE7E00719B19 /* agc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DD1FBDE9890034402C /* agc.h */; };
+		84FC90A41FD5AE7E00719B19 /* bio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D51FBDE9880034402C /* bio.h */; };
+		84FC90A51FD5AE7E00719B19 /* bitarr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DE1FBDE9890034402C /* bitarr.h */; };
+		84FC90A61FD5AE7E00719B19 /* bitvec.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F41FBDE98E0034402C /* bitvec.h */; };
+		84FC90A71FD5AE7E00719B19 /* byteorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F81FBDE98F0034402C /* byteorder.h */; };
+		84FC90A81FD5AE7E00719B19 /* case.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D81FBDE9880034402C /* case.h */; };
+		84FC90A91FD5AE7E00719B19 /* ckd_alloc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DF1FBDE9890034402C /* ckd_alloc.h */; };
+		84FC90AA1FD5AE7E00719B19 /* clapack_lite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F51FBDE98E0034402C /* clapack_lite.h */; };
+		84FC90AB1FD5AE7E00719B19 /* cmd_ln.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E61FBDE98B0034402C /* cmd_ln.h */; };
+		84FC90AC1FD5AE7E00719B19 /* cmn.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DA1FBDE9890034402C /* cmn.h */; };
+		84FC90AD1FD5AE7E00719B19 /* err.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F21FBDE98D0034402C /* err.h */; };
+		84FC90AE1FD5AE7E00719B19 /* f2c.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E31FBDE98A0034402C /* f2c.h */; };
+		84FC90AF1FD5AE7E00719B19 /* fe.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D41FBDE9880034402C /* fe.h */; };
+		84FC90B01FD5AE7E00719B19 /* feat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DC1FBDE9890034402C /* feat.h */; };
+		84FC90B11FD5AE7E00719B19 /* filename.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F11FBDE98D0034402C /* filename.h */; };
+		84FC90B21FD5AE7E00719B19 /* fixpoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2DB1FBDE9890034402C /* fixpoint.h */; };
+		84FC90B31FD5AE7E00719B19 /* fsg_model.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2EF1FBDE98C0034402C /* fsg_model.h */; };
+		84FC90B41FD5AE7E00719B19 /* genrand.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F61FBDE98E0034402C /* genrand.h */; };
+		84FC90B51FD5AE7E00719B19 /* glist.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E51FBDE98A0034402C /* glist.h */; };
+		84FC90B61FD5AE7E00719B19 /* hash_table.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E91FBDE98B0034402C /* hash_table.h */; };
+		84FC90B71FD5AE7E00719B19 /* heap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D61FBDE9880034402C /* heap.h */; };
+		84FC90B81FD5AE7E00719B19 /* jsgf.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E81FBDE98B0034402C /* jsgf.h */; };
+		84FC90B91FD5AE7E00719B19 /* listelem_alloc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2EB1FBDE98B0034402C /* listelem_alloc.h */; };
+		84FC90BA1FD5AE7E00719B19 /* logmath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D91FBDE9880034402C /* logmath.h */; };
+		84FC90BB1FD5AE7E00719B19 /* matrix.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2ED1FBDE98C0034402C /* matrix.h */; };
+		84FC90BC1FD5AE7E00719B19 /* mmio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2D71FBDE9880034402C /* mmio.h */; };
+		84FC90BD1FD5AE7E00719B19 /* ngram_model.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2EA1FBDE98B0034402C /* ngram_model.h */; };
+		84FC90BE1FD5AE7E00719B19 /* pio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F31FBDE98D0034402C /* pio.h */; };
+		84FC90BF1FD5AE7E00719B19 /* prim_type.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E01FBDE9890034402C /* prim_type.h */; };
+		84FC90C01FD5AE7E00719B19 /* priority_queue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2EC1FBDE98C0034402C /* priority_queue.h */; };
+		84FC90C11FD5AE7E00719B19 /* profile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F01FBDE98C0034402C /* profile.h */; };
+		84FC90C21FD5AE7E00719B19 /* sbthread.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E11FBDE98A0034402C /* sbthread.h */; };
+		84FC90C31FD5AE7E00719B19 /* sphinx_config.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2F71FBDE98E0034402C /* sphinx_config.h */; };
+		84FC90C41FD5AE7E00719B19 /* sphinxbase_export.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E41FBDE98A0034402C /* sphinxbase_export.h */; };
+		84FC90C51FD5AE7E00719B19 /* strfuncs.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2E71FBDE98B0034402C /* strfuncs.h */; };
+		84FC90C61FD5AE7E00719B19 /* yin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F2EE1FBDE98C0034402C /* yin.h */; };
+		84FC90C71FD5AE7E00719B19 /* cmdln_macro.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3441FBDEAAE0034402C /* cmdln_macro.h */; };
+		84FC90C81FD5AE7E00719B19 /* pocketsphinx_export.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3451FBDEAAE0034402C /* pocketsphinx_export.h */; };
+		84FC90C91FD5AE7E00719B19 /* pocketsphinx.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3421FBDEAAE0034402C /* pocketsphinx.h */; };
+		84FC90CA1FD5AE7E00719B19 /* ps_lattice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3431FBDEAAE0034402C /* ps_lattice.h */; };
+		84FC90CB1FD5AE7E00719B19 /* ps_mllr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3401FBDEAAE0034402C /* ps_mllr.h */; };
+		84FC90CC1FD5AE7E00719B19 /* ps_search.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8440F3411FBDEAAE0034402C /* ps_search.h */; };
+		84FC90CD1FD5B24A00719B19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F24F1FBDD78E0034402C /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84FC90901FD5ADD400719B19 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				84FC909F1FD5AE7E00719B19 /* AppDelegate.h in CopyFiles */,
+				84FC90A01FD5AE7E00719B19 /* ViewController.h in CopyFiles */,
+				84FC90A11FD5AE7E00719B19 /* PocketsphinxDecoder.h in CopyFiles */,
+				84FC90A21FD5AE7E00719B19 /* ad.h in CopyFiles */,
+				84FC90A31FD5AE7E00719B19 /* agc.h in CopyFiles */,
+				84FC90A41FD5AE7E00719B19 /* bio.h in CopyFiles */,
+				84FC90A51FD5AE7E00719B19 /* bitarr.h in CopyFiles */,
+				84FC90A61FD5AE7E00719B19 /* bitvec.h in CopyFiles */,
+				84FC90A71FD5AE7E00719B19 /* byteorder.h in CopyFiles */,
+				84FC90A81FD5AE7E00719B19 /* case.h in CopyFiles */,
+				84FC90A91FD5AE7E00719B19 /* ckd_alloc.h in CopyFiles */,
+				84FC90AA1FD5AE7E00719B19 /* clapack_lite.h in CopyFiles */,
+				84FC90AB1FD5AE7E00719B19 /* cmd_ln.h in CopyFiles */,
+				84FC90AC1FD5AE7E00719B19 /* cmn.h in CopyFiles */,
+				84FC90AD1FD5AE7E00719B19 /* err.h in CopyFiles */,
+				84FC90AE1FD5AE7E00719B19 /* f2c.h in CopyFiles */,
+				84FC90AF1FD5AE7E00719B19 /* fe.h in CopyFiles */,
+				84FC90B01FD5AE7E00719B19 /* feat.h in CopyFiles */,
+				84FC90B11FD5AE7E00719B19 /* filename.h in CopyFiles */,
+				84FC90B21FD5AE7E00719B19 /* fixpoint.h in CopyFiles */,
+				84FC90B31FD5AE7E00719B19 /* fsg_model.h in CopyFiles */,
+				84FC90B41FD5AE7E00719B19 /* genrand.h in CopyFiles */,
+				84FC90B51FD5AE7E00719B19 /* glist.h in CopyFiles */,
+				84FC90B61FD5AE7E00719B19 /* hash_table.h in CopyFiles */,
+				84FC90B71FD5AE7E00719B19 /* heap.h in CopyFiles */,
+				84FC90B81FD5AE7E00719B19 /* jsgf.h in CopyFiles */,
+				84FC90B91FD5AE7E00719B19 /* listelem_alloc.h in CopyFiles */,
+				84FC90BA1FD5AE7E00719B19 /* logmath.h in CopyFiles */,
+				84FC90BB1FD5AE7E00719B19 /* matrix.h in CopyFiles */,
+				84FC90BC1FD5AE7E00719B19 /* mmio.h in CopyFiles */,
+				84FC90BD1FD5AE7E00719B19 /* ngram_model.h in CopyFiles */,
+				84FC90BE1FD5AE7E00719B19 /* pio.h in CopyFiles */,
+				84FC90BF1FD5AE7E00719B19 /* prim_type.h in CopyFiles */,
+				84FC90C01FD5AE7E00719B19 /* priority_queue.h in CopyFiles */,
+				84FC90C11FD5AE7E00719B19 /* profile.h in CopyFiles */,
+				84FC90C21FD5AE7E00719B19 /* sbthread.h in CopyFiles */,
+				84FC90C31FD5AE7E00719B19 /* sphinx_config.h in CopyFiles */,
+				84FC90C41FD5AE7E00719B19 /* sphinxbase_export.h in CopyFiles */,
+				84FC90C51FD5AE7E00719B19 /* strfuncs.h in CopyFiles */,
+				84FC90C61FD5AE7E00719B19 /* yin.h in CopyFiles */,
+				84FC90C71FD5AE7E00719B19 /* cmdln_macro.h in CopyFiles */,
+				84FC90C81FD5AE7E00719B19 /* pocketsphinx_export.h in CopyFiles */,
+				84FC90C91FD5AE7E00719B19 /* pocketsphinx.h in CopyFiles */,
+				84FC90CA1FD5AE7E00719B19 /* ps_lattice.h in CopyFiles */,
+				84FC90CB1FD5AE7E00719B19 /* ps_mllr.h in CopyFiles */,
+				84FC90CC1FD5AE7E00719B19 /* ps_search.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8440F1C31FBDC29E0034402C /* PocketsphinxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketsphinxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +242,7 @@
 		8440F3741FC2F2070034402C /* libsphinxbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsphinxbase.a; sourceTree = "<group>"; };
 		8440F3761FC2F2080034402C /* libsphinxad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsphinxad.a; sourceTree = "<group>"; };
 		8440F3811FC2F25D0034402C /* libpocketsphinx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpocketsphinx.a; sourceTree = "<group>"; };
+		84FC90921FD5ADD400719B19 /* libPocketsphinx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPocketsphinx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +254,14 @@
 				8440F37A1FC2F2080034402C /* libsphinxbase.a in Frameworks */,
 				8440F2501FBDD79C0034402C /* Foundation.framework in Frameworks */,
 				8440F37C1FC2F2080034402C /* libsphinxad.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FC908F1FD5ADD400719B19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FC90CD1FD5B24A00719B19 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				8440F1C31FBDC29E0034402C /* PocketsphinxTest.app */,
+				84FC90921FD5ADD400719B19 /* libPocketsphinx.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +470,23 @@
 			productReference = 8440F1C31FBDC29E0034402C /* PocketsphinxTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84FC90911FD5ADD400719B19 /* Pocketsphinx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84FC909A1FD5ADD400719B19 /* Build configuration list for PBXNativeTarget "Pocketsphinx" */;
+			buildPhases = (
+				84FC908E1FD5ADD400719B19 /* Sources */,
+				84FC908F1FD5ADD400719B19 /* Frameworks */,
+				84FC90901FD5ADD400719B19 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pocketsphinx;
+			productName = Pocketsphinx;
+			productReference = 84FC90921FD5ADD400719B19 /* libPocketsphinx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,6 +497,10 @@
 				ORGANIZATIONNAME = IraNikolenko;
 				TargetAttributes = {
 					8440F1C21FBDC29E0034402C = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					84FC90911FD5ADD400719B19 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -380,6 +520,7 @@
 			projectRoot = "";
 			targets = (
 				8440F1C21FBDC29E0034402C /* PocketsphinxTest */,
+				84FC90911FD5ADD400719B19 /* Pocketsphinx */,
 			);
 		};
 /* End PBXProject section */
@@ -411,6 +552,17 @@
 				8440F1D61FBDC29E0034402C /* main.m in Sources */,
 				8440F2101FBDCAC70034402C /* PocketsphinxDecoder.m in Sources */,
 				8440F1C81FBDC29E0034402C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FC908E1FD5ADD400719B19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FC909B1FD5AE5B00719B19 /* AppDelegate.m in Sources */,
+				84FC909C1FD5AE5B00719B19 /* ViewController.m in Sources */,
+				84FC909D1FD5AE5B00719B19 /* main.m in Sources */,
+				84FC909E1FD5AE5B00719B19 /* PocketsphinxDecoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +737,31 @@
 			};
 			name = Release;
 		};
+		84FC90981FD5ADD400719B19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84FC90991FD5ADD400719B19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -602,6 +779,15 @@
 			buildConfigurations = (
 				8440F1DA1FBDC29E0034402C /* Debug */,
 				8440F1DB1FBDC29E0034402C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84FC909A1FD5ADD400719B19 /* Build configuration list for PBXNativeTarget "Pocketsphinx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84FC90981FD5ADD400719B19 /* Debug */,
+				84FC90991FD5ADD400719B19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

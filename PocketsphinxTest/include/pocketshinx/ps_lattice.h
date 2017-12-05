@@ -43,11 +43,11 @@
 #define __PS_LATTICE_H__
 
 /* SphinxBase headers. */
-#include <prim_type.h>
-#include <ngram_model.h>
+#include "prim_type.h"
+#include "ngram_model.h"
 
 /* PocketSphinx headers. */
-#include <pocketsphinx_export.h>
+#include "pocketsphinx_export.h"
 
 #ifdef __cplusplus
 extern "C" {
